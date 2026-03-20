@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="FinanzApp – Gestiona tus finanzas personales. Controla ingresos, gastos, categorías y visualiza tu dashboard financiero." />
+  <title>FinanzApp | Finanzas Personales</title>
+
+  <!-- Favicon (emoji) -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💰</text></svg>" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- App Styles -->
+  <link rel="stylesheet" href="css/styles.css" />
+
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+</head>
+<body>
+
+  <!-- Fixed Navbar (rendered by app.js) -->
+  <header id="navbar" style="display:none;"></header>
+
+  <!-- SPA Mount Point -->
+  <main id="app" role="main" aria-live="polite">
+    <!-- Pages are rendered here by the router -->
+  </main>
+
+  <!-- Toast Container -->
+  <div id="toast-container" aria-live="polite" aria-atomic="true"></div>
+
+  <!-- Loading Overlay -->
+  <div id="loading-overlay" role="status" aria-label="Cargando...">
+    <div class="spinner"></div>
+  </div>
+
+  <!-- Confirmation Modal -->
+  <div id="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal__card">
+      <h2 class="modal__title" id="modal-title">Confirmar</h2>
+      <div class="modal__body" id="modal-body"></div>
+      <div class="modal__actions">
+        <button class="btn btn--ghost" id="modal-cancel">Cancelar</button>
+        <button class="btn btn--primary" id="modal-confirm" style="display:none;">Confirmar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════
+       SCRIPT LOADING ORDER (dependency chain):
+       Layer 0: Config & Entities
+       Layer 1: Repositories (depend on config + authService.getToken)
+       Layer 2: Services (depend on repositories)
+       Layer 3: UI Helpers & Pages (depend on services)
+       Layer 4: App Router (depends on everything)
+       ═══════════════════════════════════════════════════ -->
+
+  <!-- Layer 0: Config & Entities -->
+  <script src="js/config.js"></script>
+  <script src="js/entities.js"></script>
+
+  <!-- Layer 2-FIRST: authService must be loaded before repositories
+       because repositories call authService.getToken() -->
+  <script src="js/services/authService.js"></script>
+
+  <!-- Layer 1: Repositories -->
+  <script src="js/repositories/authRepository.js"></script>
+  <script src="js/repositories/workspaceRepository.js"></script>
+  <script src="js/repositories/categoriaRepository.js"></script>
+  <script src="js/repositories/beneficiarioRepository.js"></script>
+  <script src="js/repositories/transactionRepository.js"></script>
+  <script src="js/repositories/dashboardRepository.js"></script>
+
+  <!-- Layer 2: Remaining Services (depend on repositories) -->
+  <script src="js/services/workspaceService.js"></script>
+  <script src="js/services/categoriaService.js"></script>
+  <script src="js/services/beneficiarioService.js"></script>
+  <script src="js/services/transactionService.js"></script>
+  <script src="js/services/dashboardService.js"></script>
+
+  <!-- Layer 3: UI Helpers -->
+  <script src="js/ui.js"></script>
+
+  <!-- Layer 3: Pages -->
+  <script src="js/pages/loginPage.js"></script>
+  <script src="js/pages/workspacePage.js"></script>
+  <script src="js/pages/categoriasPage.js"></script>
+  <script src="js/pages/beneficiariosPage.js"></script>
+  <script src="js/pages/transaccionesPage.js"></script>
+  <script src="js/pages/dashboardPage.js"></script>
+
+  <!-- Layer 4: Router & Bootstrap -->
+  <script src="js/app.js"></script>
+
+</body>
+</html>
