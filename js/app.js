@@ -8,6 +8,7 @@ const app = (() => {
 
   // Route definitions: hash → { page, requiresAuth, requiresWorkspace, title }
   const ROUTES = {
+    '#home':          { page: landingPage,      requiresAuth: false,  requiresWorkspace: false, title: 'Inicio' },
     '#login':         { page: loginPage,        requiresAuth: false,  requiresWorkspace: false, title: 'Iniciar Sesión' },
     '#workspace':     { page: workspacePage,    requiresAuth: true,   requiresWorkspace: false, title: 'Workspace' },
     '#dashboard':     { page: dashboardPage,    requiresAuth: true,   requiresWorkspace: true,  title: 'Dashboard' },
@@ -17,7 +18,7 @@ const app = (() => {
   };
 
   const DEFAULT_AUTH_ROUTE     = '#workspace';
-  const DEFAULT_UNAUTH_ROUTE   = '#login';
+  const DEFAULT_UNAUTH_ROUTE   = '#home';
   const DEFAULT_WORKSPACE_ROUTE = '#dashboard';
 
   function _getHash() {
@@ -50,8 +51,8 @@ const app = (() => {
       return;
     }
 
-    // If authenticated and going to login, redirect
-    if (hash === '#login' && authService.isAuthenticated()) {
+    // If authenticated and going to login or home, redirect
+    if ((hash === '#login' || hash === '#home') && authService.isAuthenticated()) {
       const wsId = workspaceService.getActiveWorkspaceId();
       _navigate(wsId ? DEFAULT_WORKSPACE_ROUTE : DEFAULT_AUTH_ROUTE);
       return;
