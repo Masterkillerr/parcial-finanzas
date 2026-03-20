@@ -94,7 +94,8 @@ const loginPage = (() => {
 
       _clearErrors(['login-email-error', 'login-password-error']);
 
-      if (!email)    { _showError('login-email-error', 'Campo requerido.'); return; }
+      if (!email) { _showError('login-email-error', 'Campo requerido.'); return; }
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { _showError('login-email-error', 'Formato de correo inválido.'); return; }
       if (!password) { _showError('login-password-error', 'Campo requerido.'); return; }
 
       const btn = document.getElementById('btn-login');

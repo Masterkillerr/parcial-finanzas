@@ -177,6 +177,7 @@ const categoriasPage = (() => {
     });
 
     if (!nombre) { _showFieldError('cat-nombre-error', 'Requerido.'); return; }
+    if (nombre.length < 3) { _showFieldError('cat-nombre-error', 'Mínimo 3 caracteres.'); return; }
     if (!tipo)   { _showFieldError('cat-tipo-error', 'Selecciona un tipo.'); return; }
 
     const btn = document.getElementById('btn-save-cat');
