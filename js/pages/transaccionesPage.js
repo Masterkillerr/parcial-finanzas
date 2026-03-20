@@ -239,6 +239,19 @@ const transaccionesPage = (() => {
     document.getElementById('btn-cancel-tx').addEventListener('click', _closeForm);
     document.getElementById('form-transaccion').addEventListener('submit', _handleSubmit);
 
+    const tipoSelect = document.getElementById('tx-tipo');
+    const medioGroup = document.getElementById('tx-medio').closest('.form-group');
+    if (tipoSelect && medioGroup) {
+      tipoSelect.addEventListener('change', (e) => {
+        if (e.target.value === 'INGRESO') {
+          medioGroup.style.display = 'none';
+          document.getElementById('tx-medio').value = '';
+        } else {
+          medioGroup.style.display = 'flex';
+        }
+      });
+    }
+
     // Set today's date as default
     const fechaInput = document.getElementById('tx-fecha');
     if (fechaInput) fechaInput.value = new Date().toISOString().split('T')[0];
@@ -290,7 +303,7 @@ const transaccionesPage = (() => {
         beneficiarioId: beneficiario ? parseInt(beneficiario) : null,
         fecha,
         descripcion:  descripcion || null,
-        medioPago:    medioPago   || null,
+        medioPago:    tipo === 'GASTO' ? (medioPago || null) : null,
       });
       ui.showToast('Movimiento registrado.', 'success');
       _closeForm();
