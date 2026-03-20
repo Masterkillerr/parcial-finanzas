@@ -109,6 +109,7 @@ body::before {
   font-size:  1.1rem;
   background: linear-gradient(135deg, #6366f1, #a78bfa);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 .nav__workspace {
@@ -503,7 +504,14 @@ body::before {
   margin-bottom: 2rem;
 }
 .auth-logo__icon    { font-size: 2.5rem; display: block; }
-.auth-logo__title   { font-size: 1.75rem; font-weight: 800; background: linear-gradient(135deg,#6366f1,#a78bfa); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+.auth-logo__title   {
+  font-size: 1.75rem;
+  font-weight: 800;
+  background: linear-gradient(135deg,#6366f1,#a78bfa);
+  -webkit-background-clip:text;
+  background-clip: text;
+  -webkit-text-fill-color:transparent;
+}
 .auth-logo__subtitle { color: var(--color-text-muted); font-size: 0.875rem; margin-top: 0.25rem; }
 
 .auth-tabs {
@@ -547,6 +555,7 @@ body::before {
 .highlight {
   background: linear-gradient(135deg,#6366f1,#a78bfa);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 

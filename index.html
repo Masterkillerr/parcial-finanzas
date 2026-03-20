@@ -63,11 +63,7 @@
   <script src="js/config.js"></script>
   <script src="js/entities.js"></script>
 
-  <!-- Layer 2-FIRST: authService must be loaded before repositories
-       because repositories call authService.getToken() -->
-  <script src="js/services/authService.js"></script>
-
-  <!-- Layer 1: Repositories -->
+  <!-- Layer 1: Repositories (Acceso a API) -->
   <script src="js/repositories/authRepository.js"></script>
   <script src="js/repositories/workspaceRepository.js"></script>
   <script src="js/repositories/categoriaRepository.js"></script>
@@ -75,17 +71,16 @@
   <script src="js/repositories/transactionRepository.js"></script>
   <script src="js/repositories/dashboardRepository.js"></script>
 
-  <!-- Layer 2: Remaining Services (depend on repositories) -->
+  <!-- Layer 2: Services (Lógica de Negocio y Sesión) -->
+  <script src="js/services/authService.js"></script>
   <script src="js/services/workspaceService.js"></script>
   <script src="js/services/categoriaService.js"></script>
   <script src="js/services/beneficiarioService.js"></script>
   <script src="js/services/transactionService.js"></script>
   <script src="js/services/dashboardService.js"></script>
 
-  <!-- Layer 3: UI Helpers -->
+  <!-- Layer 3: UI Helpers & Pages -->
   <script src="js/ui.js"></script>
-
-  <!-- Layer 3: Pages -->
   <script src="js/pages/loginPage.js"></script>
   <script src="js/pages/workspacePage.js"></script>
   <script src="js/pages/categoriasPage.js"></script>
